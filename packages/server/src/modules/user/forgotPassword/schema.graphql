@@ -1,0 +1,4 @@
+type Mutation {
+  sendForgotPasswordEmail(email: String!): [Feedback!]
+  forgotPasswordChange(newPassword: String!, key: String!): [Feedback!]
+}

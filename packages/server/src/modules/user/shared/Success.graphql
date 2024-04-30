@@ -1,0 +1,4 @@
+type Success {
+    result:String!
+    message:String
+}
