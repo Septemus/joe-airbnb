@@ -5,7 +5,6 @@ import * as session from "express-session";
 import * as connectRedis from "connect-redis";
 import * as RateLimit from "express-rate-limit";
 import * as RateLimitRedisStore from "rate-limit-redis";
-
 import { redis } from "./redis";
 import { createTypeormConn } from "./utils/createTypeormConn";
 import { confirmEmail } from "./routes/confirmEmail";
@@ -15,15 +14,14 @@ import { createTestConn } from "./testUtils/createTestConn";
 import { confirmChangePassword } from "./routes/confirmChangePassword";
 
 const SESSION_SECRET = "ajslkjalksjdfkl";
-const RedisStore = connectRedis(session as any);
-
+const RedisStore = connectRedis(session);
 export const startServer = async () => {
   if (process.env.NODE_ENV === "test") {
     await redis.flushall();
   }
 
   const server = new GraphQLServer({
-    schema: genSchema() as any,
+    schema: genSchema(),
     context: ({ request }) => {
       // debugger
       return ({
