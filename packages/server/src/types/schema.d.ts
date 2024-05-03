@@ -22,16 +22,7 @@ column: number;
 
 interface IQuery {
 __typename: "Query";
-dummy2: string | null;
-bye2: string | null;
-dummy: string | null;
 me: IUser | null;
-bye: string | null;
-hello: string;
-}
-
-interface IHelloOnQueryArguments {
-name?: string | null;
 }
 
 interface IUser {
@@ -42,11 +33,11 @@ email: string;
 
 interface IMutation {
 __typename: "Mutation";
-sendForgotPasswordEmail: boolean | null;
-forgotPasswordChange: Array<IError>;
-login: Array<IError>;
+sendForgotPasswordEmail: Array<Feedback>;
+forgotPasswordChange: Array<Feedback>;
+login: Array<Feedback>;
 logout: boolean | null;
-register: Array<IError>;
+register: Array<Feedback>;
 }
 
 interface ISendForgotPasswordEmailOnMutationArguments {
@@ -68,10 +59,20 @@ email: string;
 password: string;
 }
 
+type Feedback = IError | ISuccess;
+
+
+
 interface IError {
 __typename: "Error";
 path: string;
-message: string;
+message: string | null;
+}
+
+interface ISuccess {
+__typename: "Success";
+result: string;
+message: string | null;
 }
 }
 
