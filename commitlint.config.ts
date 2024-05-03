@@ -12,7 +12,6 @@ const ret:UserConfig= {
         {
             rules: {
                 'msg-rule': (subject) => {
-                    console.log(subject)
                     const ret=/^(general|web|server):.*/.test(subject.header)
                     return [
                         ret,
