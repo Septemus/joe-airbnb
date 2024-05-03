@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx tsc 
+
+npx --no -- commitlint --edit --config ./commitlint.config.ts  \$1
+
+rm -f ./commitlint.config.js
