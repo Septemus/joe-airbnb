@@ -8,3 +8,4 @@ dump.rdb
 .env
 dist
 .DS_store
+.husky
