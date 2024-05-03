@@ -27,8 +27,7 @@
     "jest": "^22.4.3",
     "nodemon": "^1.17.3",
     "ts-jest": "^22.4.4",
-    "ts-node": "6.0.0",
-    "typescript": "^2.9.1"
+    "ts-node": "6.0.0"
   },
   "dependencies": {
     "@gql2ts/from-schema": "^1.8.0",
@@ -60,22 +59,6 @@
   },
   "scripts": {
     "start": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
-    "test": "NODE_ENV=test jest --watch",
     "gen-schema-types": "ts-node src/scripts/createTypes.ts"
-  },
-  "jest": {
-    "globalSetup": "./src/testUtils/callSetup.js",
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
   }
 }
