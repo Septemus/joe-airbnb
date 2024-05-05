@@ -1,1 +1,1 @@
-declare module "merge-graphql-schemas";
+declare module 'merge-graphql-schemas'
