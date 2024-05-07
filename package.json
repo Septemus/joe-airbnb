@@ -17,6 +17,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@types/yup": "^0.32.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.3.0",
@@ -26,6 +27,7 @@
     "eslint-webpack-plugin": "^3.1.1",
     "husky": "^7.0.0",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "yup": "^1.4.0"
   }
 }
