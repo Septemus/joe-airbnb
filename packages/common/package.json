@@ -1,0 +1,21 @@
+{
+  "name": "@joe-airbnb/common",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf ./dist && tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/yup": "^0.32.0",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.5"
+  }
+}

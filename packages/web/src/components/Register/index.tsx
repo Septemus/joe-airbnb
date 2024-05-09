@@ -2,24 +2,10 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { withFormik, FormikErrors, FormikProps } from 'formik';
 import * as yup from 'yup';
-import {
-  usernameNotLongEnough,
-  invalidEmail
-} from '../../utils/yup/errorMessages';
-import {
-  registerConfirmPasswordValidation,
-  registerPasswordValidation,
-  registerUsernameValidation
-} from '../../utils/yup/yupSchemas';
-
-const validationSchema = yup.object().shape({
-  username: registerUsernameValidation,
-  password: registerPasswordValidation,
-  confirmPassword: registerConfirmPasswordValidation
-});
+import { validationSchema } from '@joe-airbnb/common';
 
 interface FormValues {
-  username?: string;
+  email?: string;
   password?: string;
   confirmPassword: string;
 }
@@ -46,17 +32,15 @@ class RegisterView extends React.Component<FormikProps<FormValues>> {
         onSubmitCapture={handleSubmit}
       >
         <Form.Item
-          label="Username"
-          help={touched.username && errors.username ? errors.username : ''}
-          validateStatus={
-            touched.username && errors.username ? 'error' : undefined
-          }
+          label="Email"
+          help={touched.email && errors.email ? errors.email : ''}
+          validateStatus={touched.email && errors.email ? 'error' : undefined}
         >
           <Input
-            name="username"
+            name="email"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.username}
+            value={values.email}
           />
         </Form.Item>
 
@@ -113,7 +97,7 @@ const Register = withFormik<Prop, FormValues>({
   validationSchema,
   validateOnChange: true,
   validateOnBlur: true,
-  mapPropsToValues: () => ({ username: '', password: '', confirmPassword: '' }),
+  mapPropsToValues: () => ({ email: '', password: '', confirmPassword: '' }),
   handleSubmit: async (values, { props, setErrors }) => {
     const errors = await RegisterView.mySubmit(values);
     if (errors) {

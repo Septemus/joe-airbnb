@@ -4,12 +4,13 @@ import * as path from 'path';
 
 import { genSchema } from '../utils/genSchema';
 
-const typescriptTypes = generateNamespace('GQL', genSchema());
+const typescriptTypes: Promise<string> = generateNamespace(
+  'GQL',
+  genSchema()
+) as any;
 
-fs.writeFile(
-  path.join(__dirname, '../types/schema.d.ts'),
-  typescriptTypes,
-  err => {
+typescriptTypes.then(res => {
+  fs.writeFile(path.join(__dirname, '../types/schema.d.ts'), res, err => {
     console.log(err);
-  }
-);
+  });
+});

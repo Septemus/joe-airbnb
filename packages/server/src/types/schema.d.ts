@@ -57,6 +57,7 @@ declare namespace GQL {
   interface IRegisterOnMutationArguments {
     email: string;
     password: string;
+    confirmPassword: string;
   }
 
   type Feedback = IError | ISuccess;
