@@ -1,11 +1,27 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { withFormik, FormikErrors, FormikProps } from 'formik';
+import * as yup from 'yup';
+import {
+  usernameNotLongEnough,
+  invalidEmail
+} from '../../utils/yup/errorMessages';
+import {
+  registerConfirmPasswordValidation,
+  registerPasswordValidation,
+  registerUsernameValidation
+} from '../../utils/yup/yupSchemas';
+
+const validationSchema = yup.object().shape({
+  username: registerUsernameValidation,
+  password: registerPasswordValidation,
+  confirmPassword: registerConfirmPasswordValidation
+});
 
 interface FormValues {
   username?: string;
   password?: string;
-  confirmPassword?: string;
+  confirmPassword: string;
 }
 interface Prop {}
 
@@ -18,7 +34,8 @@ class RegisterView extends React.Component<FormikProps<FormValues>> {
   };
 
   render() {
-    const { values, handleChange, handleBlur, handleSubmit } = this.props;
+    const { values, handleChange, handleBlur, handleSubmit, touched, errors } =
+      this.props;
     return (
       <Form
         name="basic"
@@ -30,10 +47,13 @@ class RegisterView extends React.Component<FormikProps<FormValues>> {
       >
         <Form.Item
           label="Username"
-          name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
+          help={touched.username && errors.username ? errors.username : ''}
+          validateStatus={
+            touched.username && errors.username ? 'error' : undefined
+          }
         >
           <Input
+            name="username"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.username}
@@ -42,18 +62,38 @@ class RegisterView extends React.Component<FormikProps<FormValues>> {
 
         <Form.Item
           label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          help={touched.password && errors.password ? errors.password : ''}
+          validateStatus={
+            touched.password && errors.password ? 'error' : undefined
+          }
         >
-          <Input.Password value={values.password} />
+          <Input.Password
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
         </Form.Item>
 
         <Form.Item
+          help={
+            touched.confirmPassword && errors.confirmPassword
+              ? errors.confirmPassword
+              : ''
+          }
+          validateStatus={
+            touched.confirmPassword && errors.confirmPassword
+              ? 'error'
+              : undefined
+          }
           label="Confirm Password"
-          name="confirmPassword"
-          rules={[{ required: true, message: 'Please confirm your password!' }]}
         >
-          <Input.Password value={values.confirmPassword} />
+          <Input.Password
+            name="confirmPassword"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.confirmPassword}
+          />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
@@ -70,6 +110,9 @@ class RegisterView extends React.Component<FormikProps<FormValues>> {
 }
 
 const Register = withFormik<Prop, FormValues>({
+  validationSchema,
+  validateOnChange: true,
+  validateOnBlur: true,
   mapPropsToValues: () => ({ username: '', password: '', confirmPassword: '' }),
   handleSubmit: async (values, { props, setErrors }) => {
     const errors = await RegisterView.mySubmit(values);
