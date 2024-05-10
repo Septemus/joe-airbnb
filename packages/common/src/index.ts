@@ -9,4 +9,5 @@ const validationSchema = yup.object().shape({
   password: registerPasswordValidation,
   confirmPassword: registerConfirmPasswordValidation
 });
-export { validationSchema };
+import capitalizeFirstLetter from './commonUtils/capitalizeFirstLetter';
+export { validationSchema, capitalizeFirstLetter };

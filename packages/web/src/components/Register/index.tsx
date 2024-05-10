@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-import { withFormik, FormikErrors, FormikProps } from 'formik';
-import * as yup from 'yup';
+import { withFormik, FormikErrors, FormikProps, Field } from 'formik';
 import { validationSchema } from '@joe-airbnb/common';
+import { InputField } from '../shared/InputField';
 
-interface FormValues {
+export interface FormValues {
   email?: string;
   password?: string;
   confirmPassword: string;
@@ -20,8 +20,7 @@ class RegisterView extends React.Component<FormikProps<FormValues>> {
   };
 
   render() {
-    const { values, handleChange, handleBlur, handleSubmit, touched, errors } =
-      this.props;
+    const { handleSubmit } = this.props;
     return (
       <Form
         name="basic"
@@ -31,55 +30,20 @@ class RegisterView extends React.Component<FormikProps<FormValues>> {
         autoComplete="off"
         onSubmitCapture={handleSubmit}
       >
-        <Form.Item
-          label="Email"
-          help={touched.email && errors.email ? errors.email : ''}
-          validateStatus={touched.email && errors.email ? 'error' : undefined}
-        >
-          <Input
-            name="email"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.email}
-          />
-        </Form.Item>
-
-        <Form.Item
-          label="Password"
-          help={touched.password && errors.password ? errors.password : ''}
-          validateStatus={
-            touched.password && errors.password ? 'error' : undefined
-          }
-        >
-          <Input.Password
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-        </Form.Item>
-
-        <Form.Item
-          help={
-            touched.confirmPassword && errors.confirmPassword
-              ? errors.confirmPassword
-              : ''
-          }
-          validateStatus={
-            touched.confirmPassword && errors.confirmPassword
-              ? 'error'
-              : undefined
-          }
-          label="Confirm Password"
-        >
-          <Input.Password
-            name="confirmPassword"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.confirmPassword}
-          />
-        </Form.Item>
-
+        <Field
+          name="email"
+          component={InputField}
+        />
+        <Field
+          type="Password"
+          name="password"
+          component={InputField}
+        />
+        <Field
+          type="Password"
+          name="confirmPassword"
+          component={InputField}
+        />
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button
             type="primary"
