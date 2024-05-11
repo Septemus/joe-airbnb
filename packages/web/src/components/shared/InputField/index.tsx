@@ -2,7 +2,6 @@ import * as React from 'react';
 import { FieldProps } from 'formik';
 import { Form, Input } from 'antd';
 import { capitalizeFirstLetter } from '@joe-airbnb/common';
-import { FormValues } from '../../Register';
 
 const FormItem = Form.Item;
 type inputSubs = 'Group' | 'Search' | 'TextArea' | 'Password' | 'OTP';

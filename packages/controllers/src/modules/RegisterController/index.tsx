@@ -1,6 +1,7 @@
-import * as react from 'react';
-import { graphql, ChildMutateProps } from 'react-apollo';
-import gql from 'graphql-tag';
+import * as React from 'react';
+import { graphql, ChildMutateProps } from '@apollo/client/react/hoc';
+import { gql } from '@apollo/client';
+// import gql from 'graphql-tag';
 interface Props {
   children: (data: {
     submit: (value: any) => Promise<null>;
@@ -8,7 +9,7 @@ interface Props {
 }
 class C extends React.PureComponent<ChildMutateProps<Props, any, any>> {
   submit = async (value: any) => {
-    console.log('register');
+    console.log('register', value);
     const response = await this.props.mutate({
       variables: value
     });
@@ -26,8 +27,15 @@ const registerMutation = gql`
       password: $password
       confirmPassword: $confirmPassword
     ) {
-      path
-      message
+      ... on Success {
+        result
+        message
+      }
+      ... on Error {
+        path
+        message
+      }
     }
   }
 `;
+export const RegisterController = graphql(registerMutation)(C);
