@@ -15,7 +15,7 @@ class RegisterView extends React.Component<FormikProps<FormValues>> {
   static mySubmit: (
     values: FormValues
   ) => Promise<FormikErrors<FormValues> | null> = async values => {
-    console.log(values);
+    console.log('this is register:', values);
     return null;
   };
 
