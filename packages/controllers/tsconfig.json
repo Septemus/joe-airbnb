@@ -23,10 +23,12 @@
   "exclude": [
     "node_modules",
     "build",
+    "dist",
     "scripts",
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts"
+    "src/setupTests.ts",
+    "./codegen.ts"
   ]
 }
