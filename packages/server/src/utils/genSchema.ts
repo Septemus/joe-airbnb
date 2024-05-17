@@ -1,7 +1,7 @@
-import { mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
+import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge';
 import * as path from 'path';
 import * as fs from 'fs';
-import { makeExecutableSchema } from 'graphql-tools';
+import { makeExecutableSchema } from '@graphql-tools/schema';
 import * as glob from 'glob';
 
 export const genSchema = () => {
@@ -15,7 +15,7 @@ export const genSchema = () => {
     .map(resolver => require(resolver).resolvers);
 
   return makeExecutableSchema({
-    typeDefs: mergeTypes(graphqlTypes),
+    typeDefs: mergeTypeDefs(graphqlTypes),
     resolvers: mergeResolvers(resolvers)
   });
 };
