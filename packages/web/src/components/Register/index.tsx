@@ -77,9 +77,7 @@ export default class Register extends React.PureComponent {
   render() {
     return (
       <RegisterController>
-        {({ submit }: { submit: (value: any) => Promise<null> }) => (
-          <RegisterView submit={submit} />
-        )}
+        {({ submit }) => <RegisterView submit={submit} />}
       </RegisterController>
     );
   }

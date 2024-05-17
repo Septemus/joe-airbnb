@@ -5,12 +5,12 @@ import { validationSchema } from '@joe-airbnb/common';
 import { InputField } from '../../shared/InputField';
 
 export interface FormValues {
-  email?: string;
-  password?: string;
+  email: string;
+  password: string;
   confirmPassword: string;
 }
 interface Prop {
-  submit: (value: any) => Promise<null>;
+  submit: (value: FormValues) => Promise<FormikErrors<FormValues> | null>;
 }
 
 class C extends React.Component<FormikProps<FormValues> & Prop> {
