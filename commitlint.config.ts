@@ -12,10 +12,12 @@ const ret: UserConfig = {
     {
       rules: {
         'msg-rule': subject => {
-          const ret = /^(general|web|server):.*/.test(subject.header);
+          const ret = /^(general|web|server|controllers):.*/.test(
+            subject.header
+          );
           return [
             ret,
-            `Your subject should contain start with 'general|web|server'`
+            `Your subject should contain start with 'general|web|server|controllers'`
           ];
         }
       }
