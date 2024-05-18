@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import 'dotenv/config';
 import { ApolloServer } from '@apollo/server';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { expressMiddleware } from '@apollo/server/express4';
 import * as express from 'express';
 import * as session from 'express-session';
@@ -37,7 +38,10 @@ export const startServer = async () => {
   const httpServer = http.createServer(app);
   const server = new ApolloServer<MyContext>({
     schema: genSchema(),
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
+    plugins: [
+      ApolloServerPluginDrainHttpServer({ httpServer }),
+      ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })
+    ]
   });
   await server.start();
   const expMiddleware = expressMiddleware(server, {
