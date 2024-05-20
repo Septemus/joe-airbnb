@@ -103,5 +103,5 @@ export const startServer = async () => {
     httpServer.listen({ port: 4000 }, resolve)
   );
   console.log(`🚀 Server ready at http://localhost:4000/`);
-  return app;
+  return httpServer;
 };
