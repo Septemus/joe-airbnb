@@ -18,7 +18,10 @@
     "noUnusedLocals": true,
     "types": ["jest", "node", "react", "react-dom", "react-router-dom"],
     "skipLibCheck": true,
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "@/*": ["./src/*"],
+    },
   },
   "exclude": [
     "node_modules",
