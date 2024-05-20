@@ -1,13 +1,13 @@
 import { Redis } from 'ioredis';
-
-export interface Session extends Express.Session {
+import * as session from 'express-session';
+export interface Session extends session.Session {
   userId?: string;
 }
 
 export interface Context {
   redis: Redis;
   url: string;
-  session: Session;
+  session: Session & Partial<session.SessionData>;
   req: Express.Request;
 }
 

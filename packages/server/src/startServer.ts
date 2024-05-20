@@ -25,7 +25,7 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 interface MyContext {
   redis: Redis;
   url: string;
-  session: session.Session;
+  session: session.Session & Partial<session.SessionData>;
   req: express.Request;
 }
 const SESSION_SECRET = 'ajslkjalksjdfkl';
@@ -46,7 +46,6 @@ export const startServer = async () => {
   await server.start();
   const expMiddleware = expressMiddleware(server, {
     context: async ({ req }: { req: express.Request }): Promise<MyContext> => {
-      req.session;
       return {
         redis,
         url: req.protocol + '://' + req.get('host'),
