@@ -6,11 +6,11 @@
     "sourceMap": true,
     "outDir": "./dist",
     "moduleResolution": "node",
-
     "removeComments": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
+    "skipLibCheck": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -18,8 +18,8 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": false,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
   },
-  "exclude": ["node_modules"],
+  "exclude": ["**/node_modules"],
   "include": ["./src/**/*.tsx", "./src/**/*.ts"]
 }
