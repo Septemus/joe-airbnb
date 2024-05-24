@@ -38,6 +38,7 @@ export const startServer = async () => {
   const httpServer = http.createServer(app);
   const server = new ApolloServer<MyContext>({
     schema: genSchema(),
+    introspection: true,
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
       ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })
